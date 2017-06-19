@@ -64,7 +64,7 @@ app.controller("botctrl", function($scope, $http){
         
         if(item.categoria.nome === "Espetinho"){
             console.log("Agora foi no espetinho né?");
-            $http.post("https://projeto-lab-chopp.herokuapp.com/salvaEspetinho", item)
+            $http.post("http://localhost:8080/salvaEspetinho", item)
             .then(function(){
                 console.log("foieee");
                 $scope.enviando=false;
@@ -77,7 +77,7 @@ app.controller("botctrl", function($scope, $http){
         }
         if(item.categoria.nome === "Porção"){
             console.log("Porção agora?");
-            $http.post("https://projeto-lab-chopp.herokuapp.com/salvaPorcao", item)
+            $http.post("http://localhost:8080/salvaPorcao", item)
             .then(function(){
                 console.log("foieee");
                 $scope.enviando=false;
@@ -192,12 +192,13 @@ app.controller("botctrl", function($scope, $http){
         }
 
     }
-    $scope.deletarItem = function(item){
+    $scope.deletarItem = function(i, item){
         $scope.enviando = true;
         console.log("Deletandoooo");
-        console.log(item);
+        console.log(i);
                
-            $http.delete("https://projeto-lab-chopp.herokuapp.com/deletarItens/" + item.id )
+        if(item.categoria.nome === "Espetinho"){       
+            $http.delete("https://projeto-lab-chopp.herokuapp.com/deletarEspetinho/" + i.id )
                 .then(function(){
                     console.log("Deletou");
                     $scope.enviando=false;
@@ -207,8 +208,58 @@ app.controller("botctrl", function($scope, $http){
                     $scope.enviando=false;
                     $scope.mensagem="Não deletou!";
                 });
+        }
+        if(item.categoria.nome === "Porção"){
+            $http.delete("https://projeto-lab-chopp.herokuapp.com/deletarPorcao/" + i.id )
+                .then(function(){
+                    console.log("Deletou");
+                    $scope.enviando=false;
+                    $scope.mensagem="Deletou!";
+                },function(){
+                    console.log("Erro");
+                    $scope.enviando=false;
+                    $scope.mensagem="Não deletou!";
+                });
+        }
+        if(item.categoria.nome === "Cerveja"){       
+            $http.delete("https://projeto-lab-chopp.herokuapp.com/deletaCerveja/" + i.id )
+                .then(function(){
+                    console.log("Deletou");
+                    $scope.enviando=false;
+                    $scope.mensagem="Deletou!";
+                },function(){
+                    console.log("Erro");
+                    $scope.enviando=false;
+                    $scope.mensagem="Não deletou!";
+                });
+        }
+        if(item.categoria.nome === "Drink"){       
+            $http.delete("https://projeto-lab-chopp.herokuapp.com/eletaDrink/" + i.id )
+                .then(function(){
+                    console.log("Deletou");
+                    $scope.enviando=false;
+                    $scope.mensagem="Deletou!";
+                },function(){
+                    console.log("Erro");
+                    $scope.enviando=false;
+                    $scope.mensagem="Não deletou!";
+                });
+        }
+        if(item.categoria.nome === "Não Alcoólico"){       
+            $http.delete("https://projeto-lab-chopp.herokuapp.com/deletaNaoAlcool/" + i.id )
+                .then(function(){
+                    console.log("Deletou");
+                    $scope.enviando=false;
+                    $scope.mensagem="Deletou!";
+                },function(){
+                    console.log("Erro");
+                    $scope.enviando=false;
+                    $scope.mensagem="Não deletou!";
+                });
+        }
         
     }
+    
         
     $scope.alterarItem = function (item, id) {
     $scope.enviando=true;
@@ -218,7 +269,7 @@ app.controller("botctrl", function($scope, $http){
     console.log(id); 
     console.log("TEVE ID?")
         
-        $http.put("http://localhost:8080/salvaEspetinho/" + item.id, item)
+        $http.put("https://projeto-lab-chopp.herokuapp.com/salvaEspetinho/" + item.id, item)
             console.log("novoItem")
             console.log(item)
             console.log(id)

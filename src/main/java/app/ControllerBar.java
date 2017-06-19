@@ -167,24 +167,51 @@ public class ControllerBar {
     }
     
     //Deletar Itens
-    @RequestMapping(method=RequestMethod.DELETE, value="/deletarItens/{id}")
+    @RequestMapping(method=RequestMethod.DELETE, value="/deletarEspetinho/{id}")
     public void deletarEspetinho(ItemEspetinho item) {
 
-        System.out.println("uebaaa!!! Deletando");
+        System.out.println("uebaaa!!! Deletando Espetinho");
         itemEspetinhoRepository = context.getBean(ItemEspetinhoRepository.class);
 
         itemEspetinhoRepository.delete(item.getId());
 
     }
-    /*@RequestMapping(method=RequestMethod.DELETE, value="/deletarItens/{id}")
+   @RequestMapping(method=RequestMethod.DELETE, value="/deletarPorcao/{id}")
     public void deletarPorcao(ItemPorcao item) {
 
-        System.out.println("uebaaa!!! Deletando");
+        System.out.println("uebaaa!!! Deletando Porção");
         itemPorcaoRepository = context.getBean(ItemPorcaoRepository.class);
 
         itemPorcaoRepository.delete(item.getId());
 
-    }*/
+    }
+    @RequestMapping(method=RequestMethod.DELETE, value="/deletaCerveja/{id}")
+    public void deletarCerveja(ItemCerveja item) {
+
+        System.out.println("uebaaa!!! Deletando Cerveja");
+        itemCervejaRepository = context.getBean(ItemCervejaRepository.class);
+
+        itemCervejaRepository.delete(item.getId());
+
+    }
+    @RequestMapping(method=RequestMethod.DELETE, value="/deletaDrink/{id}")
+    public void deletarDrink(ItemDrink item) {
+
+        System.out.println("uebaaa!!! Deletando Drink");
+        itemDrinkRepository = context.getBean(ItemDrinkRepository.class);
+
+        itemDrinkRepository.delete(item.getId());
+
+    }
+    @RequestMapping(method=RequestMethod.DELETE, value="/deletaNaoAlcool/{id}")
+    public void deletarNaoAlcool(ItemNaoAlcool item) {
+
+        System.out.println("uebaaa!!! Deletando Não Alcoolicas");
+        itemNaoAlcoolRepository = context.getBean(ItemNaoAlcoolRepository.class);
+
+        itemNaoAlcoolRepository.delete(item.getId());
+
+    }
     
     @RequestMapping(method=RequestMethod.PUT, value="/salvaEspetinho/{id}")
     public ItemEspetinho alteraBanco(@RequestBody ItemEspetinho espetinho) throws Exception {

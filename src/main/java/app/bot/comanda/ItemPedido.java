@@ -17,8 +17,7 @@ public class ItemPedido {
     private Cliente cliente;
     private String nome;
     private int quantidade;
-    private double valor;
-    private int quantidadeTotal;    
+    private double valor;   
 
     public Integer getId() {
         return id;
@@ -54,16 +53,6 @@ public class ItemPedido {
     }
     public void setValor(double valor) {
         this.valor = valor;
-    }  
-
-    public int getQuantidadeTotal() {
-        return quantidadeTotal;
-    }
-
-    public void setQuantidadeTotal(int quantidadeTotal) {
-        this.quantidadeTotal = quantidadeTotal;
-    }
-    
-    
+    }     
     
 }
