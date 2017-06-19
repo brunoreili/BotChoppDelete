@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Módulo de Testes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <style>
+        .jumbotron{
+            width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+        .table{
+            margin-top: 20px;
+        }
+        .form-control{
+            width: 400px;
+            margin-left: 150px;
+        }
+        </style> 
+    </head>
+    <body ng-app="botapp" ng-controller="botctrl">
+        <script src="app.js"></script>
+
+        <h1 style="text-align: center; font-family: fantasy">Sistema de Gerenciamento de Bar - SIGAB</h1>
+           
+        <ul class="nav nav-tabs">
+        <li role="presentation"><a href="index.html">Home</a></li>
+        <li role="presentation"><a href="cardapio.html">Cadastrar Cardápio</a></li>
+        <li role="presentation"><a href="relatorios.html">Relatórios</a></li>
+        <li role="presentation" class="active"><a href="testes.html">Testes</a></li>
+        </ul>               
+        
+        <hr><!--Enviar Texto-->
+        <div class="jumbotron">
+            <h3>Inserir Texto</h3>
+            <hr/>
+            <textarea class="form-control" rows="5" ng-model="texto" placeholder="Texto"></textarea> <br/>
+            <button class="btn btn-primary" 
+                    ng-click="enviar(texto)"
+                    ng-disabled="!texto">Enviar</button>
+            <br/>
+            <h4 ng-show="enviando">Enviando...</h4> 
+            <hr><!--Resposta-->
+            <h4 style="text-align: left">Resposta:</h4>
+            {{resposta.data.texto}}
+        </div> 
+        
+    </body>
+</html>

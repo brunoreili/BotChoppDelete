@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Laborattório do Chopp</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <style>
+        .jumbotron{
+            width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+        .table{
+            margin-top: 20px;
+        }
+        .form-control{
+            width: 400px;
+            margin-left: 150px;
+        }
+        </style>            
+    </head>
+    <body ng-app="botapp" ng-controller="botctrl">
+        <script src="app.js"></script>
+        
+        <h1 style="text-align: center; font-family: fantasy">Sistema de Gerenciamento de Bar - SIGAB</h1>
+           
+        <ul class="nav nav-tabs">
+        <li role="presentation"><a href="index.html">Home</a></li>
+        <li role="presentation" class="active"><a href="cardapio.html">Cadastrar Cardápio</a></li>
+        <li role="presentation"><a href="relatorios.html">Relatórios</a></li>
+        <li role="presentation"><a href="testes.html">Testes</a></li>
+        </ul>  
+        
+        <hr/><!--Crud De Itens-->         
+        <div class="jumbotron">
+            
+            <h3>Administração de Cardápio</h3>
+            <hr/>
+            <select class="form-control" ng-model="item.categoria" 
+                    ng-options="categoria.nome group by categoria.tipo for categoria in categorias">
+                <option value="">Selecione a categoria do item</option>
+            </select> <br/>
+            <input class="form-control" type="text" ng-model="item.nome" placeholder="Nome"/> <br/>
+            <input type="number" step="0.01" class="form-control" type="text" ng-model="item.valor" placeholder="Valor R$"/> <br/>
+            <button class="btn btn-primary" ng-click="adcionarItem(item)" 
+                    ng-disabled="!item.nome || !item.valor || !item.categoria">Adcionar Item
+            </button>
+            <button class="btn btn-primary" ng-click="listarItem(item)" ng-disabled="!item.categoria">Listar</button>
+            <hr/>
+            <h4 ng-show="enviando">Enviando...</h4> 
+            <h4>{{mensagem}}</h4>
+            <table class="table table-striped" ng-show="itens">
+                <tr>
+                    <th></th>
+                    <th style="text-align: center">Nome</th>
+                    <th style="text-align: center">valor R$</th>
+                </tr>
+                <tr ng-repeat="item in itens">
+                    <td><button class="btn btn-danger" ng-click="deletarItem(item)">Deletar</button></td>
+                    <td>{{item.nome}}</td>
+                    <td>{{item.valor}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

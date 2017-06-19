@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Laborattório do Chopp</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <style>
+        .jumbotron{
+            width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+        .table{
+            margin-top: 20px;
+        }
+        .form-control{
+            width: 400px;
+            margin-left: 150px;
+        }
+        </style>            
+    </head>
+    <body ng-app="botapp" ng-controller="botctrl">
+        <script src="app.js"></script>
+        
+        <h1 style="text-align: center; font-family: fantasy">Sistema de Gerenciamento de Bar - SIGAB</h1>
+           
+        <ul class="nav nav-tabs">
+        <li role="presentation"><a href="index.html">Home</a></li>
+        <li role="presentation"><a href="cardapio.html">Cadastrar Cardápio</a></li>
+        <li role="presentation" class="active"><a href="relatorios.html">Relatórios</a></li>
+        <li role="presentation"><a href="testes.html">Testes</a></li>
+        </ul>        
+        
+        
+        <hr/><!--Relatórios-->
+        <div class="jumbotron">
+            <h3>Relatórios</h3>
+            <hr/>
+            <select class="form-control" ng-model="cliente.relatorio"
+                    ng-options="relatorio.modelo for relatorio in relatorios">
+                <option value="">Selecione o relatório</option>
+            </select> <br/>
+            <button class="btn btn-primary" ng-click="gerarRelatorios(cliente)"
+                    ng-disabled="!cliente.relatorio">Gerar</button>
+            <h4 ng-show="buscando">Buscando...</h4>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-striped" ng-show="cliente">
+                        <tr>
+                            <th style="text-align: center">{{nome}}</th>
+                        </tr>
+                        <tr ng-repeat="tabela1 in tabelas1 track by $index">
+                            <td>{{tabela1}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-striped" ng-show="cliente">
+                        <tr>
+                            <th style="text-align: center">{{propriedade}}</th>
+                        </tr>
+                        <tr ng-repeat="tabela2 in tabelas2 track by $index">
+                            <td>{{tabela2}}</td>
+                        </tr>
+                    </table>
+                </div>  
+            </div>
+        </div>
+    </body>
+</html>
