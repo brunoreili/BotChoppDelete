@@ -27,14 +27,18 @@
     <body ng-app="botapp" ng-controller="botctrl">
         <script src="app.js"></script>
         
-        <h1 style="text-align: center; font-family: fantasy">Sistema de Gerenciamento de Bar - SIGAB</h1>
-           
-        <ul class="nav nav-tabs">
-        <li role="presentation"><a href="index.html">Home</a></li>
-        <li role="presentation" class="active"><a href="cardapio.html">Cadastrar Cardápio</a></li>
-        <li role="presentation"><a href="relatorios.html">Relatórios</a></li>
-        <li role="presentation"><a href="testes.html">Testes</a></li>
-        </ul>  
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li class="active"><a href="cardapio.html">Cadastrar Cardápio</a></li>
+                  <li><a href="relatorios.html">Relatórios</a></li>
+                  <li><a href="testes.html">Testes</a></li>
+                </ul>
+              </div>
+        </nav>
+        
+        <h1 style="text-align: center; font-family: fantasy">Sistema de Gerenciamento de Bar - SIGAB</h1> 
         
         <hr/><!--Crud De Itens-->         
         <div class="jumbotron">
@@ -56,14 +60,20 @@
             <h4>{{mensagem}}</h4>
             <table class="table table-striped" ng-show="itens">
                 <tr>
-                    <th></th>
+                    
                     <th style="text-align: center">Nome</th>
                     <th style="text-align: center">valor R$</th>
+                    <th></th>
                 </tr>
-                <tr ng-repeat="item in itens">
-                    <td><button class="btn btn-danger" ng-click="deletarItem(item)">Deletar</button></td>
-                    <td>{{item.nome}}</td>
-                    <td>{{item.valor}}</td>
+                <tr ng-repeat="i in itens">
+                    
+                    <td>{{i.nome}}</td>
+                    <td>{{i.valor}}</td>
+                    <td>
+                        <button class="btn btn-success" ng-click="alterarItem(item)" ng-disabled="!item.nome || !item.valor">Alterar</button>
+                        <button class="btn btn-danger" ng-click="deletarItem(i)">Deletar</button>
+                        
+                    </td>
                 </tr>
             </table>
         </div>

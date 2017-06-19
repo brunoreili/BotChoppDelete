@@ -28,7 +28,7 @@ app.controller("botctrl", function($scope, $http){
         update.message.text = texto;
         
         
-        $http.post("http://localhost:8080/update", update)
+        $http.post("https://projeto-lab-chopp.herokuapp.com/update", update)
             .then(function(result){
                 console.log('result');
                 console.log(result);
@@ -64,7 +64,7 @@ app.controller("botctrl", function($scope, $http){
         
         if(item.categoria.nome === "Espetinho"){
             console.log("Agora foi no espetinho né?");
-            $http.post("http://localhost:8080/salvaEspetinho", item)
+            $http.post("https://projeto-lab-chopp.herokuapp.com/salvaEspetinho", item)
             .then(function(){
                 console.log("foieee");
                 $scope.enviando=false;
@@ -133,7 +133,7 @@ app.controller("botctrl", function($scope, $http){
         $scope.buscando = true;
         console.log("buscandooOOOoo");        
         if(item.categoria.nome === "Espetinho"){
-            $http.get("http://localhost:8080/listaEspetinhos")
+            $http.get("https://projeto-lab-chopp.herokuapp.com/listaEspetinhos")
                 .then(function(item){
                     $scope.buscando=false;
                     console.log(item);
@@ -197,7 +197,7 @@ app.controller("botctrl", function($scope, $http){
         console.log("Deletandoooo");
         console.log(item);
                
-            $http.delete("http://localhost:8080/deletarItens/", item.id)
+            $http.delete("https://projeto-lab-chopp.herokuapp.com/deletarItens/" + item.id )
                 .then(function(){
                     console.log("Deletou");
                     $scope.enviando=false;
@@ -209,6 +209,32 @@ app.controller("botctrl", function($scope, $http){
                 });
         
     }
+        
+    $scope.alterarItem = function (item, id) {
+    $scope.enviando=true;
+    console.log("savandoooo");
+    console.log("O QUE TEM?")
+    console.log(item)
+    console.log(id); 
+    console.log("TEVE ID?")
+        
+        $http.put("http://localhost:8080/salvaEspetinho/" + item.id, item)
+            console.log("novoItem")
+            console.log(item)
+            console.log(id)
+            console.log("ID????")
+            .then(function(){
+            console.log("foieee");
+            $scope.enviando=false;
+            $scope.mensagem="Espetinho alterado!";
+        }, function(){
+            console.log("erro");
+            $scope.enviando=false;
+            $scope.mensagem="Erro no cadastro!";
+        });
+    }
+    
+    
     
     //RELATÓRIOS
     $scope.clientes = [];    

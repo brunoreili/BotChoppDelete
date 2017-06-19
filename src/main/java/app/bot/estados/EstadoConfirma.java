@@ -43,7 +43,6 @@ public class EstadoConfirma extends Estado{
                     comanda.setPedidoAberto(true);
                     mensagemResposta = "Pedido confirmado, " + cliente.getFirst_name() + "!" + System.lineSeparator() +
                                        "Agora é só aguardar que logo entregaremos na sua mesa." + System.lineSeparator() +
-                                       "Sua comanda até o momento está assim:" + System.lineSeparator() +
                                        "Se precisar de alguma coisa é só me chamar!" + System.lineSeparator() +
                                        "1 - Olhar cardápio" + System.lineSeparator() +
                                        "2 - Olhar/Fechar a comanda";

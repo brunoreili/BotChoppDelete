@@ -168,13 +168,41 @@ public class ControllerBar {
     
     //Deletar Itens
     @RequestMapping(method=RequestMethod.DELETE, value="/deletarItens/{id}")
-    public void deletarItens(ItemEspetinho item) {
+    public void deletarEspetinho(ItemEspetinho item) {
 
         System.out.println("uebaaa!!! Deletando");
         itemEspetinhoRepository = context.getBean(ItemEspetinhoRepository.class);
 
         itemEspetinhoRepository.delete(item.getId());
 
+    }
+    /*@RequestMapping(method=RequestMethod.DELETE, value="/deletarItens/{id}")
+    public void deletarPorcao(ItemPorcao item) {
+
+        System.out.println("uebaaa!!! Deletando");
+        itemPorcaoRepository = context.getBean(ItemPorcaoRepository.class);
+
+        itemPorcaoRepository.delete(item.getId());
+
+    }*/
+    
+    @RequestMapping(method=RequestMethod.PUT, value="/salvaEspetinho/{id}")
+    public ItemEspetinho alteraBanco(@RequestBody ItemEspetinho espetinho) throws Exception {
+
+        EspetinhoDAO bancoEspetinho = new EspetinhoDAO(context);
+        bancoEspetinho.cadastraEspetinhos();
+        
+       try{
+       if(espetinho.getId() != null){
+            System.out.println("uebaaaa Espetinho alterado");
+            itemEspetinhoRepository = context.getBean(ItemEspetinhoRepository.class);
+            itemEspetinhoRepository.save(espetinho);
+       }
+        
+        return espetinho;
+       }catch(Exception e){
+           throw new Exception("Erro ao alterar espetinho: Id precisa ser informado!", e);
+       }
     }
  
     //CLIENTE
